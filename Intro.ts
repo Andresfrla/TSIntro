@@ -89,4 +89,148 @@ function logMessage(message: string) : void {
     // return implicito <---- Never nunca llega, el void si llega pero lo ignora
 }
 
+// inferencia de funciones anonimas segun el contexto
 
+// const avengers = ['Spidey', 'Hulk', 'Avvengers']
+
+// avengers.forEach(function (avenger) {
+//     console.log(avenger.toUpperCase)
+// })
+
+// Objetos 
+
+// let hero = {
+//     name: 'Hero',
+//     age: 36
+// }
+
+// function createHero(name: string, age: number) {
+//     return {name, age}
+// }
+
+// const thor = createHero('Thor',1500)
+
+
+// Type Alias 
+
+// type Hero = {
+//     name: string
+//     age: number
+// }
+
+// let hero: Hero = {
+//         name: 'Hero',
+//         age: 36
+//     }
+    
+// function createHero(hero: Hero): Hero {
+//     const {  name, age } = hero
+//     return {name, age} 
+// }
+    
+// const thor = createHero({name: 'Thor', age: 1500})
+
+// Optional propiertes
+
+// type HeroId = `${string}-${string}-${string}-${string}-${string}`
+
+// type Hero = {
+//     readonly id?: HeroId // readonly es para que no se modifique es solo de lectura
+//     name: string
+//     age: number
+//     isActive?: boolean // <- poniendo el ? es opcional
+// }
+
+// let hero: Hero = {
+//         name: 'Hero',
+//         age: 36
+// }
+    
+// function createHero(hero: Hero): Hero {
+//     const {  name, age } = hero
+//     return {
+//         id: crypto.randomUUID(),
+//         name, 
+//         age, 
+//         isActive: true
+//     } 
+// }
+
+const thor = createHero({name: 'Thor', age: 1500})
+
+
+// Template union types
+
+type HexadecimalColor = `#${string}`
+
+// const color: HexadecimalColor = '0033ff'
+const color2: HexadecimalColor = '#0033ff'
+
+// Union types
+
+// type HeroId = `${string}-${string}-${string}-${string}-${string}`
+// type HeroPowerScale = 'local' | 'planetary' | 'galactic' | 'universal' | 'multiversal'
+
+// let ann : string | 2
+// // union de tipos 
+// ann = 2
+
+// type Hero = {
+//     readonly id?: HeroId // readonly es para que no se modifique es solo de lectura
+//     name: string
+//     age: number
+//     isActive?: boolean // <- poniendo el ? es opcional
+//     powerScale?: HeroPowerScale
+// }
+
+// let hero: Hero = {
+//         name: 'Hero',
+//         age: 36
+// }
+    
+// function createHero(hero: Hero): Hero {
+//     const {  name, age } = hero
+//     return {
+//         id: crypto.randomUUID(),
+//         name, 
+//         age, 
+//         isActive: true
+//     } 
+// }
+
+// thor.powerScale = "multiversal"
+
+// Intersections types
+
+type HeroId = `${string}-${string}-${string}-${string}-${string}`
+type HeroPowerScale = 'local' | 'planetary' | 'galactic' | 'universal' | 'multiversal'
+
+type HeroBasicInfo = {
+    name: string,
+    age: number,
+}
+
+type HeroProperties = {
+    readonly id?: string
+    isActive?: boolean 
+    powerScale?: HeroPowerScale
+}
+
+let hero: Hero = {
+    name: 'Hero',
+    age: 36
+}
+
+type Hero = HeroBasicInfo && HeroProperties
+    
+function createHero(hero: HeroBasicInfo): Hero {
+    const {  name, age } = hero
+    return {
+        id: crypto.randomUUID(),
+        name, 
+        age, 
+        isActive: true
+    } 
+}
+
+thor.powerScale = "multiversal"
