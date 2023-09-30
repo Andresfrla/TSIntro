@@ -62,3 +62,31 @@ const sayHi= (name: string) => {
 
 sayHiFromFunction(sayHi)
 
+// Tipado en => function
+
+const sumar = (a: number, b: number): number => {
+    return a + b
+}
+
+const restar: (a: number, b: number) => number = (a, b) => {
+    return a - b
+}
+
+// Never 
+
+// function throwError(message: string) : never {
+//     throw new throwError(message);
+// }
+
+// Never es para que nunva regrese nada y void puede devolver un valor pero se ignora
+
+function logMessage(message: string) : void {
+    console.log(message);
+
+    // throw new throwError(message); 
+
+
+    // return implicito <---- Never nunca llega, el void si llega pero lo ignora
+}
+
+
