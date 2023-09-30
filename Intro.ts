@@ -156,7 +156,7 @@ function logMessage(message: string) : void {
 //     } 
 // }
 
-const thor = createHero({name: 'Thor', age: 1500})
+// const thor = createHero({name: 'Thor', age: 1500})
 
 
 // Template union types
@@ -202,35 +202,75 @@ const color2: HexadecimalColor = '#0033ff'
 
 // Intersections types
 
-type HeroId = `${string}-${string}-${string}-${string}-${string}`
-type HeroPowerScale = 'local' | 'planetary' | 'galactic' | 'universal' | 'multiversal'
+// type HeroId = `${string}-${string}-${string}-${string}-${string}`
+// type HeroPowerScale = 'local' | 'planetary' | 'galactic' | 'universal' | 'multiversal'
 
-type HeroBasicInfo = {
-    name: string,
-    age: number,
-}
+// type HeroBasicInfo = {
+//     name: string,
+//     age: number,
+// }
 
-type HeroProperties = {
-    readonly id?: string
-    isActive?: boolean 
-    powerScale?: HeroPowerScale
-}
+// type HeroProperties = {
+//     readonly id?: HeroId,
+//     isActive?: boolean ,
+//     powerScale?: HeroPowerScale,
+// }
 
-let hero: Hero = {
-    name: 'Hero',
-    age: 36
-}
-
-type Hero = HeroBasicInfo && HeroProperties
+// type Hero = HeroBasicInfo & HeroProperties
     
-function createHero(hero: HeroBasicInfo): Hero {
-    const {  name, age } = hero
+// let hero: Hero = {
+//     name: 'Hero',
+//     age: 36
+// }
+
+// function createHero(input: HeroBasicInfo): Hero {
+//     const {  name, age } = input
+
+//     return {
+//         id: crypto.randomUUID(),
+//         name, 
+//         age, 
+//         isActive: true
+//     } 
+// }
+
+// thor.powerScale = "multiversal"
+
+// Type Index
+
+// type HeroProperties = {
+//     isActive: boolean,
+//     address: {
+//         planet: string,
+//         city: string,
+//     }
+// }
+
+// const addressHero: HeroProperties["address"] = {
+//     planet: "Earth",
+//     city: "Madrid",
+// }
+
+// const address = {
+//     planet: 'Earth',
+//     city: 'Madrid',
+// }
+
+// type Address = typeof address
+
+// const addressTwitch: Address = {
+//     planet: 'Mars',
+//     city: 'Twitch',
+// }
+
+
+// Type from function return
+
+function createAddress() {
     return {
-        id: crypto.randomUUID(),
-        name, 
-        age, 
-        isActive: true
-    } 
+        planet: 'Earth',
+        city: 'Barcelona'
+    }
 }
 
-thor.powerScale = "multiversal"
+type Address = ReturnType<typeof createAddress>
