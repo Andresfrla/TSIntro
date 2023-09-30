@@ -266,11 +266,43 @@ const color2: HexadecimalColor = '#0033ff'
 
 // Type from function return
 
-function createAddress() {
-    return {
-        planet: 'Earth',
-        city: 'Barcelona'
-    }
-}
+// function createAddress() {
+//     return {
+//         planet: 'Earth',
+//         city: 'Barcelona'
+//     }
+// }
 
-type Address = ReturnType<typeof createAddress>
+// type Address = ReturnType<typeof createAddress>
+
+const languages: (string | number)[] = []; // Modo correcto de tipado
+
+languages.push('Javascript');
+languages.push(2);
+
+/*  Tipado correcto 
+[
+['X', 'O', 'X'], <- string []
+['O', 'X', 'O'], <- string []
+['X', ' ', 'O']  <- string []
+]
+*/
+
+type CellValue = 'X' | 'O' | ' '
+type GameBoard = [
+    [CellValue, CellValue, CellValue],
+    [CellValue, CellValue, CellValue],
+    [CellValue, CellValue, CellValue]
+]
+
+const gameBoard: CellValue[][] = [
+    ['X', 'O', 'X'], 
+    ['O', 'X', 'O'], 
+    ['X', ' ', 'O']
+] 
+
+// Tuples
+
+type RGB = [number, number, number]
+
+const RGB = [255, 255, 0]
